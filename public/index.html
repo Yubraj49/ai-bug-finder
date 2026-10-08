@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Bug Finder</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="header">
+        <div class="logo">
+            🐛<span>AI Bug Finder</span>
+        </div>
+        <p>Find bugs. Understand them. Fix them.</p>
+    </header>
+    <main class="container">
+        <section class="card">
+            <div class="section-title">
+                <div>
+                    <h2>Analyze Your Code</h2>
+                    <p>Paste your code below and let AI inspect it.</p>
+                </div>
+            </div>
+
+            <div class="controls">
+                <div class="language-box">
+                    <label for="language">Programming Language</label>
+                    <select id="language">
+                        <option value="javascript">
+                            Javascript
+                        </option>
+                        <option value="python">
+                            Python
+                        </option>
+                        <option value="cpp">
+                            C++
+                        </option>
+                        <option value="java">
+                            Java
+                        </option>
+                        <option value="html">
+                            HTML
+                        </option>
+                        <option value="css">
+                            CSS
+                        </option>
+                        <option value="c">
+                            C
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <textarea id="codeInput" spellcheck="false" placeholder="Paste your code here...
+            Example:
+
+function hello() {
+    console.log(username);
+}
+
+Click Analyze Code to find possible bugs.""></textarea>
+        </section>
+    </main>
+    <script src=" script.js"></script>
+</body>
+
+</html>
