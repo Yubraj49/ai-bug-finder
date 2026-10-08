@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>AI Bug Finder</title>
 
@@ -15,16 +13,43 @@
 
 <body>
 
+    <div class="background-effects">
+        <div class="glow glow-one"></div>
+        <div class="glow glow-two"></div>
+        <div class="grid"></div>
+    </div>
+
     <header class="header">
-        <div class="logo">
-            <span>AI Bug Finder</span>
+
+        <div class="top-bar">
+            <div class="logo">
+                AI Bug Finder
+            </div>
+
+            <button id="themeBtn" class="theme-btn" type="button" aria-label="Toggle theme">
+                <span id="themeIcon">☀</span>
+                <span id="themeText">Light</span>
+            </button>
         </div>
 
-        <p>
-            Find bugs. Understand them. Fix them.
-        </p>
-    </header>
+        <div class="hero">
+            <div class="badge">
+                AI POWERED CODE ANALYSIS
+            </div>
 
+            <h1>
+                Find bugs.
+                <span>Understand them.</span>
+                Fix them.
+            </h1>
+
+            <p>
+                Paste your code and let AI inspect it for bugs,
+                errors and possible improvements.
+            </p>
+        </div>
+
+    </header>
 
     <main class="container">
 
@@ -36,7 +61,6 @@
                     <p>Paste your code below and let AI inspect it.</p>
                 </div>
             </div>
-
 
             <div class="controls">
 
@@ -82,11 +106,19 @@
 
             </div>
 
+            <div class="editor-wrapper">
 
-            <textarea
-                id="codeInput"
-                spellcheck="false"
-                placeholder="// Paste your code here...
+                <div class="editor-top">
+                    <div class="window-dots">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+
+                    <span>code-editor</span>
+                </div>
+
+                <textarea id="codeInput" spellcheck="false" placeholder="// Paste your code here...
 
 Example:
 
@@ -94,9 +126,9 @@ function hello() {
     console.log(username);
 }
 
-Click Analyze Code to find possible bugs."
-            ></textarea>
+Click Analyze Code to find possible bugs."></textarea>
 
+            </div>
 
             <div class="editor-footer">
 
@@ -104,30 +136,25 @@ Click Analyze Code to find possible bugs."
                     0 characters
                 </span>
 
-                <button
-                    id="clearBtn"
-                    class="secondary-btn"
-                >
+                <button id="clearBtn" class="secondary-btn" type="button">
                     Clear
                 </button>
 
-                <button
-                    id="analyzeBtn"
-                    class="primary-btn"
-                >
-                Analyze Code
+                <button id="analyzeBtn" class="primary-btn" type="button">
+                    Analyze Code
                 </button>
 
             </div>
 
         </section>
 
-        <section
-            id="loading"
-            class="loading hidden"
-        >
+        <section id="loading" class="loading hidden">
 
-            <div class="spinner"></div>
+            <div class="ai-loader">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
 
             <h3>AI is analyzing your code...</h3>
 
@@ -137,15 +164,9 @@ Click Analyze Code to find possible bugs."
 
         </section>
 
-        <div
-            id="errorBox"
-            class="error-box hidden"
-        ></div>
+        <div id="errorBox" class="error-box hidden"></div>
 
-        <section
-            id="results"
-            class="results hidden"
-        >
+        <section id="results" class="results hidden">
 
             <div class="result-header">
 
@@ -157,10 +178,7 @@ Click Analyze Code to find possible bugs."
                     </p>
                 </div>
 
-                <div
-                    id="bugCount"
-                    class="bug-count"
-                >
+                <div id="bugCount" class="bug-count">
                     0 bugs
                 </div>
 
@@ -200,27 +218,19 @@ Click Analyze Code to find possible bugs."
                         </p>
                     </div>
 
-                    <button
-                        id="copyBtn"
-                        class="secondary-btn"
-                    >
+                    <button id="copyBtn" class="secondary-btn" type="button">
                         Copy
                     </button>
 
                 </div>
 
-
-                <pre
-                    id="fixedCode"
-                    class="code-output"
-                ></pre>
+                <pre id="fixedCode" class="code-output"></pre>
 
             </div>
 
         </section>
 
     </main>
-
 
     <footer>
 
@@ -230,8 +240,8 @@ Click Analyze Code to find possible bugs."
 
     </footer>
 
-
     <script src="script.js"></script>
 
 </body>
+
 </html>
