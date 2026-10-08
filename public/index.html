@@ -60,7 +60,26 @@ function hello() {
 }
 
 Click Analyze Code to find possible bugs.""></textarea>
-        </section>
+<div class=" editor-footer">
+    <span id="characterCount">0 characters</span>
+    <button id="clearBtn" class="secondary-btn">Clear</button>
+    <button id="analyzeBtn" class="primary-btn">Analyze Code</button>
+</div>
+</section>
+<section id="loading" class="loading hidden">
+    <div class="spinner"></div>
+    <h3>AI is analyzing your code...</h3>
+    <p>Looking for bugs, errors and improvements.</p>
+</section>
+<div id="errorBox" class="error-box hidden"></div>
+<section id="results" class="results hidden">
+    <div><h2>Analysis Results</h2>
+    <p id="summary">
+        Analysis complete.
+    </p></div>
+    <div id="bugCount" class="bug-count">0 bugs</div>
+    
+</section>
     </main>
     <script src=" script.js"></script>
 </body>
