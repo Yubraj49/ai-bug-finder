@@ -58,25 +58,26 @@ IMPORTANT:
 Return this exact JSON structure:
 
 {
-  "summary": "Short summary of the analysis",
-  "bugCount": 0,
-  "bugs": [
-    {
-      "severity": "critical|high|medium|low",
-      "line": 1,
-      "title": "Short bug title",
-      "explanation": "Explain the problem",
-      "fix": "Explain how to fix it"
-    }
-  ],
-  "suggestions": [
-    "Suggestion 1",
-    "Suggestion 2"
-  ],
-  "fixedCode": "Corrected version of the code"
+    "summary": "Short summary of the analysis",
+    "bugCount": 0,
+    "bugs": [
+        {
+            "severity": "critical|high|medium|low",
+            "line": 1,
+            "title": "Short bug title",
+            "explanation": "Explain the problem",
+            "fix": "Explain how to fix it"
+        }
+    ],
+    "suggestions": [
+        "Suggestion 1",
+        "Suggestion 2"
+    ],
+    "fixedCode": "Corrected version of the code"
 }
 
 Analyze:
+
 1. Syntax errors
 2. Logic errors
 3. Runtime errors
@@ -96,7 +97,7 @@ ${code}
 `;
 
         const response = await client.responses.create({
-            model: "gpt-6-luna",
+            model: "gpt-5",
             input: prompt
         });
 
@@ -111,6 +112,20 @@ ${code}
 
             return res.status(500).json({
                 error: "The AI returned an unexpected response. Please try again."
+            });
+        }
+
+        if (
+            typeof result !== "object" ||
+            result === null ||
+            typeof result.summary !== "string" ||
+            typeof result.bugCount !== "number" ||
+            !Array.isArray(result.bugs) ||
+            !Array.isArray(result.suggestions) ||
+            typeof result.fixedCode !== "string"
+        ) {
+            return res.status(500).json({
+                error: "The AI returned an invalid analysis format."
             });
         }
 

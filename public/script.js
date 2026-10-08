@@ -5,25 +5,25 @@ const themeText = document.getElementById("themeText");
 const savedTheme = localStorage.getItem("theme");
 
 if (savedTheme === "light") {
-  document.body.classList.add("light");
-  themeIcon.textContent = "☾";
-  themeText.textContent = "Dark";
+document.body.classList.add("light");
+themeIcon.textContent = "☾";
+themeText.textContent = "Dark";
 }
 
 themeBtn.addEventListener("click", () => {
-  document.body.classList.toggle("light");
+document.body.classList.toggle("light");
 
-  const isLight = document.body.classList.contains("light");
+const isLight = document.body.classList.contains("light");
 
-  if (isLight) {
+if (isLight) {
     themeIcon.textContent = "☾";
     themeText.textContent = "Dark";
     localStorage.setItem("theme", "light");
-  } else {
+} else {
     themeIcon.textContent = "☀";
     themeText.textContent = "Light";
     localStorage.setItem("theme", "dark");
-  }
+}
 });
 
 const codeInput = document.getElementById("codeInput");
@@ -48,45 +48,45 @@ const suggestionsContainer = document.getElementById("suggestionsContainer");
 const fixedCode = document.getElementById("fixedCode");
 
 codeInput.addEventListener("input", () => {
-  const count = codeInput.value.length;
+const count = codeInput.value.length;
 
-  characterCount.textContent = `${count.toLocaleString()} characters`;
+characterCount.textContent = `${count.toLocaleString()} characters`;
 });
 
 clearBtn.addEventListener("click", () => {
-  codeInput.value = "";
+codeInput.value = "";
 
-  results.classList.add("hidden");
-  errorBox.classList.add("hidden");
+results.classList.add("hidden");
+errorBox.classList.add("hidden");
 
-  characterCount.textContent = "0 characters";
+characterCount.textContent = "0 characters";
 
-  codeInput.focus();
+codeInput.focus();
 });
 
 analyzeBtn.addEventListener("click", analyzeCode);
 
 async function analyzeCode() {
-  const code = codeInput.value.trim();
-  const selectedLanguage = language.value;
+const code = codeInput.value.trim();
+const selectedLanguage = language.value;
 
-  if (!code) {
+if (!code) {
     showError("Please paste some code before analyzing.");
 
     return;
-  }
+}
 
-  errorBox.classList.add("hidden");
-  results.classList.add("hidden");
-  loading.classList.remove("hidden");
+errorBox.classList.add("hidden");
+results.classList.add("hidden");
+loading.classList.remove("hidden");
 
-  analyzeBtn.disabled = true;
+analyzeBtn.disabled = true;
 
-  analyzeBtn.textContent = "Analyzing...";
+analyzeBtn.textContent = "Analyzing...";
 
-  try {
+try {
     const response = await fetch("/api/analyze", {
-      method: "POST",
+    method: "POST",
 
       headers: {
         "Content-Type": "application/json",
