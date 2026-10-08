@@ -1,22 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
     <title>AI Bug Finder</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+
     <header class="header">
         <div class="logo">
-            🐛<span>AI Bug Finder</span>
+            <span>AI Bug Finder</span>
         </div>
-        <p>Find bugs. Understand them. Fix them.</p>
+
+        <p>
+            Find bugs. Understand them. Fix them.
+        </p>
     </header>
+
+
     <main class="container">
+
+        <!-- Code Input Section -->
+
         <section class="card">
+
             <div class="section-title">
                 <div>
                     <h2>Analyze Your Code</h2>
@@ -24,64 +39,219 @@
                 </div>
             </div>
 
+
             <div class="controls">
+
                 <div class="language-box">
-                    <label for="language">Programming Language</label>
+
+                    <label for="language">
+                        Programming Language
+                    </label>
+
                     <select id="language">
+
                         <option value="javascript">
-                            Javascript
+                            JavaScript
                         </option>
+
                         <option value="python">
                             Python
                         </option>
+
                         <option value="cpp">
                             C++
                         </option>
+
                         <option value="java">
                             Java
                         </option>
+
                         <option value="html">
                             HTML
                         </option>
+
                         <option value="css">
                             CSS
                         </option>
+
                         <option value="c">
                             C
                         </option>
+
                     </select>
+
                 </div>
+
             </div>
-            <textarea id="codeInput" spellcheck="false" placeholder="Paste your code here...
-            Example:
+
+
+            <textarea
+                id="codeInput"
+                spellcheck="false"
+                placeholder="// Paste your code here...
+
+Example:
 
 function hello() {
     console.log(username);
 }
 
-Click Analyze Code to find possible bugs.""></textarea>
-<div class=" editor-footer">
-    <span id="characterCount">0 characters</span>
-    <button id="clearBtn" class="secondary-btn">Clear</button>
-    <button id="analyzeBtn" class="primary-btn">Analyze Code</button>
-</div>
-</section>
-<section id="loading" class="loading hidden">
-    <div class="spinner"></div>
-    <h3>AI is analyzing your code...</h3>
-    <p>Looking for bugs, errors and improvements.</p>
-</section>
-<div id="errorBox" class="error-box hidden"></div>
-<section id="results" class="results hidden">
-    <div><h2>Analysis Results</h2>
-    <p id="summary">
-        Analysis complete.
-    </p></div>
-    <div id="bugCount" class="bug-count">0 bugs</div>
-    
-</section>
-    </main>
-    <script src=" script.js"></script>
-</body>
+Click Analyze Code to find possible bugs."
+            ></textarea>
 
+
+            <div class="editor-footer">
+
+                <span id="characterCount">
+                    0 characters
+                </span>
+
+                <button
+                    id="clearBtn"
+                    class="secondary-btn"
+                >
+                    Clear
+                </button>
+
+                <button
+                    id="analyzeBtn"
+                    class="primary-btn"
+                >
+                Analyze Code
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- Loading -->
+
+        <section
+            id="loading"
+            class="loading hidden"
+        >
+
+            <div class="spinner"></div>
+
+            <h3>AI is analyzing your code...</h3>
+
+            <p>
+                Looking for bugs, errors and improvements.
+            </p>
+
+        </section>
+
+
+        <!-- Error -->
+
+        <div
+            id="errorBox"
+            class="error-box hidden"
+        ></div>
+
+
+        <!-- Results -->
+
+        <section
+            id="results"
+            class="results hidden"
+        >
+
+            <div class="result-header">
+
+                <div>
+                    <h2>Analysis Results</h2>
+
+                    <p id="summary">
+                        Analysis complete.
+                    </p>
+                </div>
+
+                <div
+                    id="bugCount"
+                    class="bug-count"
+                >
+                    0 bugs
+                </div>
+
+            </div>
+
+
+            <!-- Bugs -->
+
+            <div class="result-section">
+
+                <h3>
+                    Bugs Found
+                </h3>
+
+                <div id="bugsContainer"></div>
+
+            </div>
+
+
+            <!-- Suggestions -->
+
+            <div class="result-section">
+
+                <h3>
+                    Suggestions
+                </h3>
+
+                <ul id="suggestionsContainer"></ul>
+
+            </div>
+
+
+            <!-- Fixed Code -->
+
+            <div class="result-section">
+
+                <div class="fixed-header">
+
+                    <div>
+                        <h3>
+                            Corrected Code
+                        </h3>
+
+                        <p>
+                            AI-generated suggested version.
+                        </p>
+                    </div>
+
+                    <button
+                        id="copyBtn"
+                        class="secondary-btn"
+                    >
+                        Copy
+                    </button>
+
+                </div>
+
+
+                <pre
+                    id="fixedCode"
+                    class="code-output"
+                ></pre>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+
+        <p>
+            AI Bug Finder • Built with HTML, CSS, JavaScript & AI
+        </p>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
 </html>
