@@ -6,14 +6,21 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const OPENROUTER_API_KEY = process.env.OPENROUTER_API_KEY;
+const OPENROUTER_MODEL = process.env.OPENROUTER_MODEL || "openrouter/free";
 
-if (!process.env.OPENAI_API_KEY) {
-    console.error("ERROR: OPENAI_API_KEY is missing from .env");
+if (!OPENROUTER_API_KEY) {
+    console.error("ERROR: OPENROUTER_API_KEY is missing from .env");
     process.exit(1);
 }
 
 const client = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY
+    apiKey: OPENROUTER_API_KEY,
+    baseURL: "https://openrouter.ai/api/v1",
+    defaultHeaders: {
+        "HTTP-Referer": process.env.OPENROUTER_REFERER || "http://localhost:3000",
+        "X-Title": process.env.OPENROUTER_TITLE || "AI Bug Finder"
+    }
 });
 
 app.use(express.json({ limit: "100kb" }));
@@ -96,12 +103,23 @@ ${code}
 --------------------
 `;
 
-        const response = await client.responses.create({
-            model: "gpt-5",
-            input: prompt
+        const response = await client.chat.completions.create({
+            model: OPENROUTER_MODEL,
+            messages: [
+                {
+                    role: "system",
+                    content: "You are a precise software debugging assistant. Return only valid JSON."
+                },
+                {
+                    role: "user",
+                    content: prompt
+                }
+            ],
+            temperature: 0.2,
+            response_format: { type: "json_object" }
         });
 
-        const aiText = response.output_text.trim();
+        const aiText = response.choices[0].message.content.trim();
 
         let result;
 
@@ -132,7 +150,7 @@ ${code}
         res.json(result);
 
     } catch (error) {
-        console.error("AI API Error:", error);
+        console.error("OpenRouter API Error:", error);
 
         res.status(500).json({
             error: "Something went wrong while analyzing the code."
